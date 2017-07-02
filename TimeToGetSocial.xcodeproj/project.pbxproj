@@ -25,6 +25,7 @@
 		31EA22A1F23D6FCE2D4DA092 /* Pods-TimeToGetSocial.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeToGetSocial.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TimeToGetSocial/Pods-TimeToGetSocial.debug.xcconfig"; sourceTree = "<group>"; };
 		5A768BC97EB47F10D55C3969 /* Pods_TimeToGetSocial.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TimeToGetSocial.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F425AC55196AD94857B0E514 /* Pods-TimeToGetSocial.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeToGetSocial.release.xcconfig"; path = "Pods/Target Support Files/Pods-TimeToGetSocial/Pods-TimeToGetSocial.release.xcconfig"; sourceTree = "<group>"; };
+		FD51DED51F09A37300D4A4B9 /* TimeToGetSocial.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TimeToGetSocial.entitlements; sourceTree = "<group>"; };
 		FD92611C1F0908F3005967DA /* TimeToGetSocial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimeToGetSocial.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD92611F1F0908F3005967DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FD9261211F0908F3005967DA /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
@@ -115,6 +116,7 @@
 		FD92611E1F0908F3005967DA /* TimeToGetSocial */ = {
 			isa = PBXGroup;
 			children = (
+				FD51DED51F09A37300D4A4B9 /* TimeToGetSocial.entitlements */,
 				FDA3E5781F09519E002ED002 /* Util */,
 				FD2CE01F1F090D1D00D5A1D8 /* Model */,
 				FD2CE0201F090D2400D5A1D8 /* View */,
@@ -175,6 +177,11 @@
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = 7LRD5684ZH;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};

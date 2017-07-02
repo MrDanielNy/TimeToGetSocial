@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FacebookLogin
 
 //@IBDesignable
 class RoundButton: UIButton {

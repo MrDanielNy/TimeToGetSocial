@@ -8,6 +8,8 @@
 
 import UIKit
 import Firebase
+import FacebookLogin
+import FacebookCore
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -46,6 +48,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-
+    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+        return SDKApplicationDelegate.shared.application(
+            application,
+            open: url,
+            sourceApplication: sourceApplication,
+            annotation: annotation)
+    }
 }
 
