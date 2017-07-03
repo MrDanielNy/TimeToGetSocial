@@ -6,17 +6,30 @@
 //  Copyright © 2017 Daniel Ny. All rights reserved.
 //
 
+//KeychainValue.stringForKey -> defaultKeychainWrapper.set
+
 import UIKit
 import FacebookLogin
 import Firebase
+import SwiftKeychainWrapper
 
 
 class SignInVC: UIViewController {
 
+    @IBOutlet weak var emailField: FancyField!
+    @IBOutlet weak var pswField: FancyField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+    }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        
+        if let _ = KeychainWrapper.standard.string(forKey: KEY_UID) {
+            performSegue(withIdentifier: "goToFeed", sender: nil)
+        }
     }
 
     @IBAction func facebookBtnTapped(_ sender: Any) {
@@ -37,21 +50,51 @@ class SignInVC: UIViewController {
         }
         
         func firebaseAuth(creditential: AuthCredential) {
-         //   Auth.auth().signIn(with: AuthCredential, ?)
+            //   Auth.auth().signIn(with: AuthCredential, ?)
             Auth.auth().signIn(with: creditential, completion: { (user, error) in
                 if error != nil {
                     print("ADGJMP: Unable to auth with Firebase. \(String(describing: error))")
                 } else {
                     print("ADGJMP: Successfully auth with firebase")
+                    if let user = user {
+                        self.completeSignin(user: user.uid)
+                    }
+                }
+            })
+        }
+    }
+    
+    @IBAction func signinTapped(_ sender: Any) {
+        if let mail = emailField.text, let psw = pswField.text {
+            Auth.auth().signIn(withEmail: mail, password: psw, completion: { (user, error) in
+                if error == nil {
+                    print("ADGJMP: User authenticated with firebase")
+                    if let user = user {
+                        self.completeSignin(user: user.uid)
+                    }
+                } else {
+                    Auth.auth().createUser(withEmail: mail, password: psw, completion: { (user, error) in
+                        if error != nil {
+                            print("ADGJMP: Unable to authenticate User with email")
+                        } else {
+                            print("ADGJMP: Successfully authenticated with Firebase")
+                            if let user = user {
+                                self.completeSignin(user: user.uid)
+                            }
+                        }
+                    })
                 }
                 
-                
             })
-            
         }
         
     }
     
+    func completeSignin(user: String) {
+        KeychainWrapper.standard.set(user, forKey: KEY_UID)
+        print("ADGJMP: Standard key set by completeSignin")
+        performSegue(withIdentifier: "goToFeed", sender: nil)
+    }
 
 
 }
