@@ -25,6 +25,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
 
 
+    
     @IBAction func signoutBtnTapped(_ sender: Any) {
         KeychainWrapper.standard.removeObject(forKey: KEY_UID)
         try! Auth.auth().signOut()

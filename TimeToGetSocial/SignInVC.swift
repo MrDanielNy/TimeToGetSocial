@@ -57,7 +57,8 @@ class SignInVC: UIViewController {
                 } else {
                     print("ADGJMP: Successfully auth with firebase")
                     if let user = user {
-                        self.completeSignin(user: user.uid)
+                        let userData = ["provider": creditential.provider]
+                        self.completeSignin(user: user.uid, userData: userData)
                     }
                 }
             })
@@ -70,7 +71,8 @@ class SignInVC: UIViewController {
                 if error == nil {
                     print("ADGJMP: User authenticated with firebase")
                     if let user = user {
-                        self.completeSignin(user: user.uid)
+                        let userData = ["provider": user.providerID]
+                        self.completeSignin(user: user.uid, userData: userData)
                     }
                 } else {
                     Auth.auth().createUser(withEmail: mail, password: psw, completion: { (user, error) in
@@ -79,7 +81,8 @@ class SignInVC: UIViewController {
                         } else {
                             print("ADGJMP: Successfully authenticated with Firebase")
                             if let user = user {
-                                self.completeSignin(user: user.uid)
+                                let userData = ["provider": user.providerID]
+                                self.completeSignin(user: user.uid, userData: userData)
                             }
                         }
                     })
@@ -90,7 +93,8 @@ class SignInVC: UIViewController {
         
     }
     
-    func completeSignin(user: String) {
+    func completeSignin(user: String, userData:  Dictionary<String, String>) {
+        DataSerivce.ds.CreateFirebaseDBUser(uid: user, userData: userData)
         KeychainWrapper.standard.set(user, forKey: KEY_UID)
         print("ADGJMP: Standard key set by completeSignin")
         performSegue(withIdentifier: "goToFeed", sender: nil)
