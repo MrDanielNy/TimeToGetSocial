@@ -12,9 +12,6 @@ import SwiftKeychainWrapper
 
 class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var tableView: UITableView!
-    
-    
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +19,9 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         tableView.delegate = self
         tableView.dataSource = self
         
+        DataSerivce.ds.REF_POSTS.observe(.value , with: { (snapshot) in
+            print(snapshot.value!)
+        })
     }
 
 
