@@ -210,6 +210,9 @@
                                                     <constraint firstAttribute="height" constant="49" id="rLI-Rt-Dqz"/>
                                                 </constraints>
                                                 <state key="normal" image="add-post"/>
+                                                <connections>
+                                                    <action selector="postButtonTapped:" destination="SkQ-in-F3u" eventType="touchUpInside" id="TWY-fe-35B"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -320,6 +323,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="caption" destination="sxr-Tb-RUY" id="N4R-MM-Hzs"/>
+                                            <outlet property="heartImage" destination="U1z-h7-yUn" id="mYc-pY-cyb"/>
                                             <outlet property="likesLbl" destination="kUW-Xo-YA6" id="JF2-Mu-hxZ"/>
                                             <outlet property="postImage" destination="8cd-zZ-aVk" id="Msl-RM-s0F"/>
                                             <outlet property="profileImg" destination="XlK-Ed-hhb" id="X00-sw-6eG"/>
@@ -344,18 +348,19 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="captionField" destination="Xx5-pj-anM" id="MIJ-07-G8d"/>
                         <outlet property="imageAdd" destination="726-vh-IYh" id="vpC-jv-9EI"/>
                         <outlet property="tableView" destination="GhF-y8-Vtd" id="Phw-vd-TDe"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="goToSignin" id="Vhs-KM-W0H"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="COe-Lh-YeN" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="AkW-FQ-8qx">
+                <tapGestureRecognizer id="AkW-FQ-8qx" userLabel="SignoutGestureRecognizer">
                     <connections>
                         <action selector="signoutBtnTapped:" destination="SkQ-in-F3u" id="pCv-jG-4lm"/>
                     </connections>
                 </tapGestureRecognizer>
-                <tapGestureRecognizer id="hlP-Gq-Lpf">
+                <tapGestureRecognizer id="hlP-Gq-Lpf" userLabel="AddImageGestureRecognizer">
                     <connections>
                         <action selector="addImageTapped:" destination="SkQ-in-F3u" id="tlq-Xw-SCb"/>
                     </connections>
